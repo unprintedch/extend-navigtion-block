@@ -1,0 +1,183 @@
+/* Base styles for the offcanvas navigation */
+.wp-block-navigation__responsive-container {
+	opacity: 0;
+	visibility: hidden;
+	display: flex;
+	pointer-events: none;
+	transition: transform var(--animation-speed, 0.4s) var(--animation-easing, ease-out),
+				opacity var(--animation-speed, 0.4s) var(--animation-easing, ease-out);
+	animation: none !important; /* Disable animations */
+}
+
+/* Open state for the menu */
+.wp-block-navigation__responsive-container.is-menu-open {
+	opacity: 1;
+	pointer-events: auto;
+	visibility: visible;
+	transform: translate(0, 0); /* Reset both X and Y */
+	animation: none !important; /* Ensure no animation is applied */
+}
+
+/* Horizontal Direction Classes */
+.wp-block-navigation__responsive-container.left {
+	transform: translateX(100%); /* Move off-screen to the left */
+}
+
+.wp-block-navigation__responsive-container.right {
+	transform: translateX(-100%); /* Move off-screen to the right */
+}
+
+/* Vertical Direction Classes */
+.wp-block-navigation__responsive-container.up {
+	transform: translateY(100%); /* Move off-screen to the top */
+}
+
+.wp-block-navigation__responsive-container.down {
+	transform: translateY(-100%); /* Move off-screen to the bottom */
+}
+
+/* Open state (reset transform) */
+.wp-block-navigation__responsive-container.is-menu-open.left,
+.wp-block-navigation__responsive-container.is-menu-open.right {
+	transform: translateX(0); /* Bring back to view horizontally */
+}
+
+.wp-block-navigation__responsive-container.is-menu-open.up,
+.wp-block-navigation__responsive-container.is-menu-open.down {
+	transform: translateY(0); /* Bring back to view vertically */
+}
+
+/* Easing classes */
+.wp-block-navigation__responsive-container.ease {
+	--animation-easing: ease;
+}
+
+.wp-block-navigation__responsive-container.linear {
+	--animation-easing: linear;
+}
+
+.wp-block-navigation__responsive-container.ease-in {
+	--animation-easing: ease-in;
+}
+
+.wp-block-navigation__responsive-container.ease-out {
+	--animation-easing: ease-out;
+}
+
+.wp-block-navigation__responsive-container.ease-in-out {
+	--animation-easing: ease-in-out;
+}
+
+/* Speed classes */
+.wp-block-navigation__responsive-container.duration-1 {
+	--animation-speed: 0.1s;
+}
+
+.wp-block-navigation__responsive-container.duration-2 {
+	--animation-speed: 0.2s;
+}
+
+.wp-block-navigation__responsive-container.duration-3 {
+	--animation-speed: 0.3s;
+}
+
+.wp-block-navigation__responsive-container.duration-4 {
+	--animation-speed: 0.4s;
+}
+
+.wp-block-navigation__responsive-container.duration-5 {
+	--animation-speed: 0.5s;
+}
+
+.wp-block-navigation__responsive-container.duration-6 {
+	--animation-speed: 0.6s;
+}
+
+.wp-block-navigation__responsive-container.duration-6 {
+	--animation-speed: 0.7s;
+}
+
+.wp-block-navigation__responsive-container.duration-8 {
+	--animation-speed: 0.8s;
+}
+
+.wp-block-navigation__responsive-container.duration-9 {
+	--animation-speed: 0.9s;
+}
+
+.wp-block-navigation__responsive-container.duration-10 {
+	--animation-speed: 1s;
+}
+
+
+
+
+// @keyframes dc-animation__up {
+// 	from {
+// 		opacity: 0;
+// 		transform: translateY(3em);
+// 	}
+
+// 	to {
+// 		opacity: 1;
+// 		transform: translateY(0);
+// 	}
+// }
+
+// @keyframes dc-animation__down {
+// 	from {
+// 		opacity: 0;
+// 		transform: translateY(-3em);
+// 	}
+
+// 	to {
+// 		opacity: 1;
+// 		transform: translateY(0);
+// 	}
+// }
+
+// @keyframes dc-animation__left {
+// 	from {
+// 		opacity: 0;
+// 		transform: translateX(3em);
+// 	}
+
+// 	to {
+// 		opacity: 1;
+// 		transform: translateX(0);
+// 	}
+// }
+
+// @keyframes dc-animation__right {
+// 	from {
+// 		opacity: 0;
+// 		transform: translateX(-3em);
+// 	}
+
+// 	to {
+// 		opacity: 1;
+// 		transform: translateX(0);
+// 	}
+// }
+
+// @mixin animation-direction($direction) {
+// 	&.#{$direction} {
+// 		animation: dc-animation__#{$direction} var(--animation-duration, 0.8s) ease-out;
+// 	}
+// }
+
+// .wp-block-navigation__responsive-container {
+// 	&.is-menu-open {
+// 		@include animation-direction(left);
+// 		@include animation-direction(up);
+// 		@include animation-direction(down);
+// 		@include animation-direction(right);
+// 	}
+
+// 	@for $i from 0 through 10 {
+// 		$duration: $i * 0.1s;
+// 		&.duration-#{$i } {
+// 			--animation-duration: #{$duration};
+// 		}
+// 	}
+// }
