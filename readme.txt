@@ -1,55 +1,54 @@
 === Dc24 Extend Navigation Block ===
 Contributors:      unprinted
-Tags:              block extend
+Tags:              block extend, navigation, Gutenberg, animation, offcanvas
 Tested up to:      6.6
 Stable tag:        0.1.0
 License:           GPL-2.0-or-later
 License URI:       https://www.gnu.org/licenses/gpl-2.0.html
 
-Example block scaffolded with Create Block tool.
+Extend the core navigation block with dynamic offcanvas functionality, customizable animations, and dynamic width/height.
 
 == Description ==
 
-This is the long description. No limit, and you can use Markdown (as well as in the following sections).
+The Dc24 Extend Navigation Block plugin enhances the default WordPress core navigation block by adding dynamic offcanvas menu functionality. It allows the navigation to smoothly slide in from any direction (left, right, up, or down), with fully customizable transition speeds and easing.
 
-For backwards compatibility, if this section is missing, the full length of the short description will be used, and
-Markdown parsed.
+In addition, this plugin introduces dynamic width and height settings for horizontal and vertical transitions, making the menu's dimensions adjustable depending on your design needs. You can manage these settings via CSS variables or adjust them dynamically with JavaScript, allowing you to build flexible, responsive navigation systems.
+
+### Features:
+- Offcanvas navigation that slides from any direction (left, right, up, or down)
+- Customizable transition speeds and easing
+- Dynamic width for horizontal movements and height for vertical movements
+- Fully responsive design, with support for different screen sizes
+- Accessible, with focus management and proper aria attributes
 
 == Installation ==
 
-This section describes how to install the plugin and get it working.
-
-e.g.
+To install the plugin:
 
 1. Upload the plugin files to the `/wp-content/plugins/dc24-extend-navigation-block` directory, or install the plugin through the WordPress plugins screen directly.
-1. Activate the plugin through the 'Plugins' screen in WordPress
-
+2. Activate the plugin through the 'Plugins' screen in WordPress.
+3. In the block editor, add the core navigation block, and customize it with dynamic offcanvas settings through the new settings panel in the block inspector.
 
 == Frequently Asked Questions ==
 
-= A question that someone might have =
+= How do I customize the animation speed and direction? =
 
-An answer to that question.
+You can customize the animation speed and direction through the block settings in the block inspector. Simply choose the direction (left, right, up, down) and set the speed or easing effect you prefer.
 
-= What about foo bar? =
+= Can I change the width and height of the menu dynamically? =
 
-Answer to foo bar dilemma.
+Yes, the plugin supports dynamic width and height settings using CSS variables. You can either adjust these manually in the block settings or use custom JavaScript to update the dimensions dynamically based on user interactions or screen size.
 
 == Screenshots ==
 
-1. This screen shot description corresponds to screenshot-1.(png|jpg|jpeg|gif). Note that the screenshot is taken from
-the /assets directory or the directory that contains the stable readme.txt (tags or trunk). Screenshots in the /assets
-directory take precedence. For example, `/assets/screenshot-1.png` would win over `/tags/4.3/screenshot-1.png`
-(or jpg, jpeg, gif).
-2. This is the second screen shot
+1. Navigation sliding in from the left.
+2. Example of customizing the transition speed and direction in the block settings panel.
 
 == Changelog ==
 
 = 0.1.0 =
-* Release
+* Initial release: Added dynamic offcanvas functionality, customizable animations, and responsive width/height adjustments for the core navigation block.
 
 == Arbitrary section ==
 
-You may provide arbitrary sections, in the same format as the ones above. This may be of use for extremely complicated
-plugins where more information needs to be conveyed that doesn't fit into the categories of "description" or
-"installation." Arbitrary sections will be shown below the built-in sections outlined above.
+This plugin is ideal for developers and designers looking to create highly flexible, animated navigation menus without relying on additional JavaScript-heavy libraries. The use of CSS transitions ensures smooth performance across devices, and the dynamic width and height options make it easy to fit the menu into any design.
