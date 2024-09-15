@@ -17,8 +17,6 @@ In addition, this plugin introduces dynamic width and height settings for horizo
 ### Features:
 - Offcanvas navigation that slides from any direction (left, right, up, or down)
 - Customizable transition speeds and easing
-- Dynamic width for horizontal movements and height for vertical movements
-- Fully responsive design, with support for different screen sizes
 - Accessible, with focus management and proper aria attributes
 
 == Installation ==
