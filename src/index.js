@@ -48,6 +48,14 @@ addFilter("blocks.registerBlockType",
 					type: "string",
 					default: "",
 				},
+				offcanvasHeight: {
+					type: "integer",
+					default: "",
+				},
+				offcanvasWidth: {
+					type: "integer",
+					default: "",
+				},
 			},
 		};
 
@@ -80,6 +88,12 @@ function Edit(props) {
 
 	const setAnimationeasing = (value) => {
 		props.setAttributes({ animationEasing: value });
+	};
+	const setOffcanvasHeight = (value) => {
+		props.setAttributes({ offcanvasHeight: value });
+	};
+	const setOffcanvasWidth = (value) => {
+		props.setAttributes({ offcanvasWidth: value });
 	};
 
 
@@ -152,6 +166,27 @@ function Edit(props) {
 						onMouseMove={function noRefCheck() { }}
 					/>
 				</PanelRow>
+
+				<RangeControl
+					label="Height"
+					value={parseFloat(props.attributes.offcanvasHeight) || 12} // Use 'value' instead of 'initialPosition'
+					onChange={setOffcanvasHeight} // Your function for handling changes
+					min={0}
+					max={12}
+					step={1}
+					help="Height of the offcanvas in grid columns"
+				/>
+				<RangeControl
+					__nextHasNoMarginBottom
+					help="width of the offcanvas in grid columns"
+					initialPosition={parseFloat(props.attributes.offcanvasWidth) || 12}
+					label="Width"
+					max={12}
+					min={0}
+					step={1}
+					onChange={setOffcanvasWidth}
+				/>
+
 				<PanelRow>
 					<SelectControl
 						label={__('Easing', 'text-domain')}

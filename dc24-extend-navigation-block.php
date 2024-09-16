@@ -63,53 +63,64 @@ add_action('init', __NAMESPACE__ . '\dc24_enable_linked_groups_block_styles');
  */
 function filter_button_block_render_block($block_content, $block)
 {
+    $css_variables = [];
+    $additional_classes = [];
 
-	if (isset($block['attrs']['animationDirection'])) {
-		$p = new WP_HTML_Tag_Processor($block_content);
-		// First, find the <nav> tag
-		if ($p->next_tag('nav')) {
-			while ($p->next_tag('div')) {
-				$class_attribute = $p->get_attribute('class');
-				if (strpos($class_attribute, 'wp-block-navigation__responsive-container') !== false) {
-					$direction = $block['attrs']['animationDirection'];
-					$p->add_class($direction);
-					$block_content = $p->get_updated_html();
-					break;
-				}
-			}
-		}
-	}
-	if (isset($block['attrs']['animationSpeed'])) {
-		$p = new WP_HTML_Tag_Processor($block_content);
-		// First, find the <nav> tag
-		if ($p->next_tag('nav')) {
-			while ($p->next_tag('div')) {
-				$class_attribute = $p->get_attribute('class');
-				if (strpos($class_attribute, 'wp-block-navigation__responsive-container') !== false) {
-					$speed = $block['attrs']['animationSpeed'] * 10;
-					$p->add_class("duration-$speed");
-					$block_content = $p->get_updated_html();
-					break;
-				}
-			}
-		}
-	}
-	if (isset($block['attrs']['animationEasing'])) {
-		$p = new WP_HTML_Tag_Processor($block_content);
-		// First, find the <nav> tag
-		if ($p->next_tag('nav')) {
-			while ($p->next_tag('div')) {
-				$class_attribute = $p->get_attribute('class');
-				if (strpos($class_attribute, 'wp-block-navigation__responsive-container') !== false) {
-					$easing = $block['attrs']['animationEasing'];
-					$p->add_class($easing);
-					$block_content = $p->get_updated_html();
-					break;
-				}
-			}
-		}
-	}
+    // Set animation direction as CSS variable and class
+    if (isset($block['attrs']['animationDirection'])) {
+        $direction = $block['attrs']['animationDirection'];
+        $css_variables[] = "--animation-direction: {$direction};";
+        $additional_classes[] = $direction;
+    }
 
-	return $block_content;
+    // Set animation speed as CSS variable and class (multiply by 10 for duration conversion)
+    if (isset($block['attrs']['animationSpeed'])) {
+        $speed = $block['attrs']['animationSpeed'] * 10; // Assuming the speed is scaled this way
+        $css_variables[] = "--animation-speed: {$speed}s;";
+        $additional_classes[] = "duration-$speed";
+    }
+
+    // Set animation easing as CSS variable and class
+    if (isset($block['attrs']['animationEasing'])) {
+        $easing = $block['attrs']['animationEasing'];
+        $css_variables[] = "--animation-easing: {$easing};";
+        $additional_classes[] = $easing;
+    }
+
+    // Set offcanvas width as CSS variable
+    if (isset($block['attrs']['offcanvasWidth'])) {
+        $width = $block['attrs']['offcanvasWidth'];
+        $css_variables[] = "--nav-width: {$width}px;"; // Adjust the unit as needed
+    }
+
+    if (!empty($css_variables) || !empty($additional_classes)) {
+        $p = new WP_HTML_Tag_Processor($block_content);
+        // Find the <nav> tag first
+        if ($p->next_tag('nav')) {
+            while ($p->next_tag('div')) {
+                $class_attribute = $p->get_attribute('class');
+                if (strpos($class_attribute, 'wp-block-navigation__responsive-container') !== false) {
+                    // Set the inline style attribute for the div with the CSS variables
+                    $existing_style = $p->get_attribute('style');
+                    $new_style = implode(' ', $css_variables);
+
+                    // Append to existing styles, if any
+                    $updated_style = trim($existing_style . ' ' . $new_style);
+                    $p->set_attribute('style', $updated_style);
+
+                    // Add additional classes
+                    if (!empty($additional_classes)) {
+                        $new_class = implode(' ', $additional_classes);
+                        $p->add_class($new_class);
+                    }
+
+                    $block_content = $p->get_updated_html();
+                    break;
+                }
+            }
+        }
+    }
+
+    return $block_content;
 }
-add_filter('render_block_core/navigation', __NAMESPACE__ . '\filter_button_block_render_block', 10, 2);
+add_filter('render_block_core/navigation', 'filter_button_block_render_block', 10, 2);
